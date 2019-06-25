@@ -168,12 +168,12 @@ class IterableApi():
 		else:
 			raise TypeError('campaign ids are not stored in list format')
 
-		if isinstance(start_date_time, datetime.datetime):			
+		if isinstance(start_date_time, datetime):			
 			payload["startDateTime"]= start_date_time
 		else:
 			raise TypeError('Start date is in incorrect format')
 
-		if isinstance(end_date_time, datetime.datetime):
+		if isinstance(end_date_time, datetime):
 			
 			payload["endDateTime"]= end_date_time
 		else:
