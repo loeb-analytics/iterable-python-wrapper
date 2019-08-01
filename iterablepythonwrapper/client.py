@@ -168,19 +168,23 @@ class IterableApi():
 		else:
 			raise TypeError('campaign ids are not stored in list format')
 
-		if isinstance(start_date_time, datetime):			
-			payload["startDateTime"]= start_date_time
-		else:
-			raise TypeError('Start date is in incorrect format')
-
-		if isinstance(end_date_time, datetime):
-			
-			payload["endDateTime"]= end_date_time
-		else:
-			raise TypeError('End date is in incorrect format')
+		if start_date_time:
+			if isinstance(start_date_time, datetime):			
+				payload["startDateTime"]= start_date_time
+			else:
+				raise TypeError('Start date is in incorrect format')
+		
+		if end_date_time:
+			if isinstance(end_date_time, datetime):
+				payload["endDateTime"]= end_date_time
+			else:
+				raise TypeError('End date is in incorrect format')
 
 		if use_new_format is not None:
-			payload["useNewFormat"]= use_new_format
+			if isinstance(use_new_format, bool):
+				payload["useNewFormat"]= use_new_format
+			else:
+				raise TypeError('Use New Format flag should be of type boolean')
 
 		return self.api_call(call=call, method="GET", params=payload)
 
